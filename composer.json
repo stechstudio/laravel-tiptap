@@ -1,0 +1,48 @@
+{
+    "name": "stechstudio/laravel-tiptap",
+    "description": "TALL stack integration of the Tiptap WYSIWYG editor",
+    "keywords": [
+        "stechstudio",
+        "laravel-tiptap"
+    ],
+    "homepage": "https://github.com/stechstudio/laravel-tiptap",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Matthew Mueller",
+            "email": "matthew@stechstudio.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.0",
+        "illuminate/view": "^9.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0",
+        "phpunit/phpunit": "^9.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "STS\\Tiptap\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "STS\\Tiptap\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "STS\\Tiptap\\TiptapServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

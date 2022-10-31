@@ -1,0 +1,12 @@
+# Platform
+Thumbs.db
+.DS_Store
+
+# IDE
+.idea
+
+# Dependencies
+node_modules
+composer.lock
+vendor
+
