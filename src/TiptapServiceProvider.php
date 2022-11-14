@@ -1,7 +1,8 @@
 <?php
 
-namespace STS\Tiptap;
+declare(strict_types=1);
 
+namespace STS\Tiptap;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -9,24 +10,14 @@ use Illuminate\View\Compilers\BladeCompiler;
 
 class TiptapServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/tiptap.php', 'tiptap');
+        $this->mergeConfigFrom(path: __DIR__ . '/../config/tiptap.php', key: 'tiptap');
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'tiptap');
+        $this->loadViewsFrom(path: __DIR__ . '/../resources/views', namespace: 'tiptap');
 
         $this->configureComponents();
         $this->configurePublishing();
@@ -52,24 +43,18 @@ class TiptapServiceProvider extends ServiceProvider
      */
     protected function registerComponent(string $component): void
     {
-        Blade::component('tiptap::components.'.$component, 'tiptap-'.$component);
+        Blade::component('tiptap::components.' . $component, 'tiptap-' . $component);
     }
 
-    /**
-     * Configure publishing for the package.
-     *
-     * @return void
-     */
-    protected function configurePublishing()
+    protected function configurePublishing(): void
     {
         if ($this->app->runningInConsole()) {
-            // $this->publishes([
-            //     __DIR__.'/../config/tiptap.php' => config_path('tiptap.php'),
-            // ], 'tiptap-config');
-
-            $this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/tiptap'),
-            ], 'tiptap-views');
+            $this->publishes(
+                paths: [
+                    __DIR__ . '/../resources/views' => resource_path('views/vendor/tiptap'),
+                ],
+                groups: 'tiptap-views',
+            );
         }
     }
 }
