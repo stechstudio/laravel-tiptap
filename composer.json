@@ -17,7 +17,8 @@
     "require": {
         "php": "^8.0",
         "illuminate/support": "^9.0",
-        "illuminate/view": "^9.0"
+        "illuminate/view": "^9.0",
+        "owenvoke/blade-fontawesome": "^2.1"
     },
     "require-dev": {
         "orchestra/testbench": "^7.0",
