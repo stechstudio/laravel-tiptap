@@ -89,13 +89,13 @@ window.setupEditor = function (content) {
         },
 
         setLink() {
-            const previousUrl = window.tiptap.getAttributes('link').href
+            const previousUrl = window.tiptap.getAttributes('link').href;
 
-            const url = window.prompt('URL', previousUrl)
+            const url = window.prompt('URL', previousUrl);
 
             // cancelled...
             if (url === null) {
-                return
+                return;
             }
 
             // empty...
@@ -105,9 +105,9 @@ window.setupEditor = function (content) {
                     .focus()
                     .extendMarkRange('link')
                     .unsetLink()
-                    .run()
+                    .run();
 
-                return
+                return;
             }
 
             // update link...
@@ -116,7 +116,7 @@ window.setupEditor = function (content) {
                 .focus()
                 .extendMarkRange('link')
                 .setLink({ href: url })
-                .run()
+                .run();
 
             return window.tiptap;
         },
