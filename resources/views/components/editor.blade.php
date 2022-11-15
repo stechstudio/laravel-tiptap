@@ -183,7 +183,7 @@
                     type="button"
                     class="text-sm rounded-sm text-gray-600 focus:bg-gray-300 hover:bg-gray-300 disabled:opacity-25 disabled:cursor-default"
                 >
-                    <x-far-undo x-on:click.prevent="open = ! open" class="w-5 h-5 px-1.5 py-1" />
+                    <x-far-rotate-left x-on:click.prevent="open = ! open" class="w-5 h-5 px-1.5 py-1" />
                 </button>
 
                 <button
@@ -192,7 +192,7 @@
                     type="button"
                     class="text-sm rounded-sm text-gray-600 focus:bg-gray-300 hover:bg-gray-300 disabled:opacity-25 disabled:cursor-default"
                 >
-                    <x-far-redo x-on:click.prevent="open = ! open" class="w-5 h-5 px-1.5 py-1" />
+                    <x-far-rotate-right x-on:click.prevent="open = ! open" class="w-5 h-5 px-1.5 py-1" />
                 </button>
             </div>
         </div>
