@@ -52,9 +52,9 @@
 
 <div
     x-data="{
+        show: false,
         setColor: (color) => window.tiptap.chain().focus().setColor(color).run(),
         ...setupEditor(@entangle($attributes->wire('model')).defer),
-        show: false,
     }"
     x-init="() => init($refs.editor);"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
