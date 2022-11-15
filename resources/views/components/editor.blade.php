@@ -54,6 +54,7 @@
     x-data="{
         setColor: (color) => window.tiptap.chain().focus().setColor(color).run(),
         ...setupEditor(@entangle($attributes->wire('model')).defer),
+        show: false,
     }"
     x-init="() => init($refs.editor);"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
@@ -89,62 +90,75 @@
                 </button>
 
                 <!-- @todo: replace -->
-                <x-dropdown :rightAlign="false">
-                    <x-slot name="trigger">
-                        <button
-                            type="button"
-                            class="text-sm rounded-sm"
-                            :class="(isActive('textStyle', updatedAt)) ? 'bg-gray-500 focus:bg-gray-400 hover:bg-gray-400 text-white' : 'focus:bg-gray-300 hover:bg-gray-300 text-gray-600'"
-                        >
-                            <x-far-italic x-on:click.prevent="open = ! open" class="w-5 h-5 px-1.5 py-1" />
+                <div class="relative inline-block text-left">
+                    <div>
+                        <button @click.prevent="show = ! show" type="button" class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                            <x-far-palette class="w-5 h-5 px-1.5 py-1" />
                         </button>
-                    </x-slot>
+                    </div>
 
-                    <div class="bg-white p-4 rounded shadow space-y-2">
-                        <div class="flex justify-between">
-                            <div
-                                x-on:click="window.tiptap.chain().focus().unsetColor().run()"
-                                class="flex-grow h-6 border border-transparent hover:border-gray-500 cursor-pointer p-px"
-                            >
-                                <div class="w-full h-full" style="background-color: #000"></div>
-                            </div>
-
-                            <div
-                                x-on:click="setColor('#444444')"
-                                class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
-                            >
-                                <div class="w-full h-full" style="background-color: #444444"></div>
-                            </div>
-
-                            <div
-                                x-on:click="setColor('#666666')"
-                                class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
-                            >
-                                <div class="w-full h-full" style="background-color: #666666"></div>
-                            </div>
-
-                            <div
-                                x-on:click="setColor('#999999')"
-                                class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
-                            >
-                                <div class="w-full h-full" style="background-color: #999999"></div>
-                            </div>
-                        </div>
-
-                        @foreach ($colors as $group)
-                            <div class="flex flex-wrap justify-between">
-                                @foreach ($group as $color)
+                    <div
+                        x-show="show"
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+                        class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        role="menu"
+                        aria-orientation="vertical"
+                        aria-labelledby="menu-button"
+                        tabindex="-1"
+                    >
+                        <div class="py-1" role="none">
+                            <div class="bg-white p-4 rounded shadow space-y-2">
+                                <div class="flex justify-between">
                                     <div
-                                        x-on:click="setColor('#{{ $color }}')"
+                                        x-on:click="window.tiptap.chain().focus().unsetColor().run()"
+                                        class="flex-grow h-6 border border-transparent hover:border-gray-500 cursor-pointer p-px"
+                                    >
+                                        <div class="w-full h-full" style="background-color: #000"></div>
+                                    </div>
+
+                                    <div
+                                        x-on:click="setColor('#444444')"
                                         class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
                                     >
-                                        <div class="w-full h-full" style="background-color: '#{{ $color }}'"></div>
+                                        <div class="w-full h-full" style="background-color: #444444"></div>
+                                    </div>
+
+                                    <div
+                                        x-on:click="setColor('#666666')"
+                                        class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
+                                    >
+                                        <div class="w-full h-full" style="background-color: #666666"></div>
+                                    </div>
+
+                                    <div
+                                        x-on:click="setColor('#999999')"
+                                        class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
+                                    >
+                                        <div class="w-full h-full" style="background-color: #999999"></div>
+                                    </div>
+                                </div>
+
+                                @foreach ($colors as $group)
+                                    <div class="flex flex-wrap justify-between">
+                                        @foreach ($group as $color)
+                                            <div
+                                                x-on:click="setColor('#{{ $color }}')"
+                                                class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
+                                            >
+                                                <div class="w-full h-full" style="background-color: '#{{ $color }}'"></div>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 @endforeach
                             </div>
-                        @endforeach
+                        </div>
                     </div>
-                </x-dropdown>
+                </div>
 
                 <div class="mx-2 inline-block border-l border-gray-300 h-full"></div>
 
