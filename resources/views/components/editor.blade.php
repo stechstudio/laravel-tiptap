@@ -52,7 +52,7 @@
 
 <div
     x-data="{
-        show: false,
+        open: false,
         setColor: (color) => window.tiptap.chain().focus().setColor(color).run(),
         ...setupEditor(@entangle($attributes->wire('model')).defer),
     }"
@@ -92,13 +92,13 @@
                 <!-- @todo: replace -->
                 <div class="relative inline-block text-left">
                     <div>
-                        <button @click.prevent="show = ! show" type="button" class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                        <button @click.prevent="open = ! open" type="button" class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100" id="menu-button" aria-expanded="true" aria-haspopup="true">
                             <x-far-palette class="w-5 h-5 px-1.5 py-1" />
                         </button>
                     </div>
 
                     <div
-                        x-show="show"
+                        x-show="open"
                         x-transition:enter="transition ease-out duration-100"
                         x-transition:enter-start="transform opacity-0 scale-95"
                         x-transition:enter-end="transform opacity-100 scale-100"
