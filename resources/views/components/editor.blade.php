@@ -97,67 +97,47 @@
                         </button>
                     </div>
 
-                    <div
-                        x-show="open"
-                        x-transition:enter="transition ease-out duration-100"
-                        x-transition:enter-start="transform opacity-0 scale-95"
-                        x-transition:enter-end="transform opacity-100 scale-100"
-                        x-transition:leave="transition ease-in duration-75"
-                        x-transition:leave-start="transform opacity-100 scale-100"
-                        x-transition:leave-end="transform opacity-0 scale-95"
-                        class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                        role="menu"
-                        aria-orientation="vertical"
-                        aria-labelledby="menu-button"
-                        tabindex="-1"
-                    >
-                        <div class="py-1" role="none">
-                            <div class="bg-white p-4 rounded shadow space-y-2">
-                                <div class="flex justify-between">
-                                    <div
-                                        x-on:click="window.tiptap.chain().focus().unsetColor().run()"
-                                        class="flex-grow h-6 border border-transparent hover:border-gray-500 cursor-pointer p-px"
-                                    >
-                                        <div class="w-full h-full" style="background-color: #000"></div>
-                                    </div>
-
-                                    <div
-                                        x-on:click="setColor('#444444')"
-                                        class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
-                                    >
-                                        <div class="w-full h-full" style="background-color: #444444"></div>
-                                    </div>
-
-                                    <div
-                                        x-on:click="setColor('#666666')"
-                                        class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
-                                    >
-                                        <div class="w-full h-full" style="background-color: #666666"></div>
-                                    </div>
-
-                                    <div
-                                        x-on:click="setColor('#999999')"
-                                        class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
-                                    >
-                                        <div class="w-full h-full" style="background-color: #999999"></div>
-                                    </div>
+                    <x-tiptap::dropdown :rightAlign="false">
+                        <x-slot name="trigger">
+                            <button
+                                type="button"
+                                class="text-sm rounded-sm"
+                                :class="(isActive('textStyle', updatedAt)) ? 'bg-gray-500 focus:bg-gray-400 hover:bg-gray-400 text-white' : 'focus:bg-gray-300 hover:bg-gray-300 text-gray-600'"
+                            >
+                                <i class="px-1.5 py-1 far fa-palette" x-on:click.prevent="open = !open"></i>
+                            </button>
+                        </x-slot>
+                        <div class="bg-white p-4 rounded shadow space-y-2">
+                            <div class="flex justify-between">
+                                <div class="flex-grow h-6 border border-transparent hover:border-gray-500 cursor-pointer p-px"
+                                     x-on:click="window.tiptap.chain().focus().unsetColor().run()">
+                                    <div class="w-full h-full" style="background-color: #000"></div>
                                 </div>
-
-                                @foreach ($colors as $group)
-                                    <div class="flex flex-wrap justify-between">
-                                        @foreach ($group as $color)
-                                            <div
-                                                x-on:click="setColor('#{{ $color }}')"
-                                                class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
-                                            >
-                                                <div class="w-full h-full" style="background-color: '#{{ $color }}'"></div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                @endforeach
+                                <div class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
+                                     x-on:click="setColor('#444444')">
+                                    <div class="w-full h-full" style="background-color: #444444"></div>
+                                </div>
+                                <div class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
+                                     x-on:click="setColor('#666666')">
+                                    <div class="w-full h-full" style="background-color: #666666"></div>
+                                </div>
+                                <div class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
+                                     x-on:click="setColor('#999999')">
+                                    <div class="w-full h-full" style="background-color: #999999"></div>
+                                </div>
                             </div>
+                            @foreach($colors AS $group)
+                                <div class="flex flex-wrap justify-between">
+                                    @foreach($group AS $color)
+                                        <div class="w-6 h-6 flex-shrink-0 border border-transparent hover:border-gray-500 cursor-pointer p-px"
+                                             x-on:click="setColor('#{{ $color }}')">
+                                            <div class="w-full h-full" style="background-color: #{{ $color }}"></div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endforeach
                         </div>
-                    </div>
+                    </x-tiptap::dropdown>
                 </div>
 
                 <div class="mx-2 inline-block border-l border-gray-300 h-full"></div>
