@@ -12,6 +12,10 @@
         {
             "name": "Matthew Mueller",
             "email": "matthew@stechstudio.com"
+        },
+        {
+            "name": "Haz",
+            "email": "haz@stechstudio.com"
         }
     ],
     "require": {
@@ -45,5 +49,10 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "post-install-cmd": [
+            "@php artisan icons:cache"
+        ]
+    }
 }
