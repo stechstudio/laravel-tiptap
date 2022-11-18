@@ -1,11 +1,7 @@
-import { Editor } from '@tiptap/core'
-import StarterKit from '@tiptap/starter-kit'
-import Link from '@tiptap/extension-link'
-import TextStyle from "@tiptap/extension-text-style";
-import Color from '@tiptap/extension-color'
+document.addEventListener("alpine:init", () => {
+    Alpine.data("TipTapEditor", (content) => ({
+        open: false,
 
-window.setupEditor = function (content) {
-    return {
         editor: null,
 
         content: content,
@@ -20,7 +16,7 @@ window.setupEditor = function (content) {
 
         init(element) {
             window.tiptap = new Editor({
-                element: element,
+                element: this.$refs.editor,
                 canUndo: false,
                 canRedo: false,
                 autofocus: true,
@@ -120,5 +116,7 @@ window.setupEditor = function (content) {
 
             return window.tiptap;
         },
-    }
-}
+
+        setColor: (color) => window.tiptap.chain().focus().setColor(color).run(),
+    }));
+});

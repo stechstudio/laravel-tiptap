@@ -1,5 +1,4 @@
-A TALL-stack implementation of the Tiptap WYSYWIG editor
-
+A TALL-stack implementation of the Tiptap WYSYWIG editor.
 
 ## Installation
 
@@ -11,50 +10,54 @@ composer require stechstudio/laravel-tiptap
 
 The service provider will be automatically wired up for you.
 
-
 ### Include Javascript resources
 
-The following must be installed in your `package.json` file to enable the rich text features this editor exposes
+The following packages must be installed.
 
-```
-@tiptap/extension-color
-@tiptap/extension-link
-@tiptap/extension-text-style
-@tiptap/starter-kit
+```bash
+
+npm install @tiptap/starter-kit
 ```
 
-Once these have been installed, include this package's javascript resources within the `app.js` file of your application:
+```bash
 
-```js
-...
-require('./../../vendor/stechstudio/laravel-tiptap/resources/js/tiptap.js');
-...
+npm install @tiptap/extension-link
 ```
 
-Unless the editor view has been published into your application's resources folder, you will also want to include this package's views in the `content` section of your tailwind configuration file so that the editor styles are not purged from your asset build:
+```bash
 
-```js
-module.exports = {
-    ...
-    content: [
-        ...
-        './vendor/stechstudio/laravel-tiptap/resources/views/**/*.blade.php',
-        ...
-    ],
-    ...
+npm install @tiptap/extension-color
+```
+
+```bash
+
+npm install @tiptap/extension-text-style
+```
+
+You also need to have Alpine.js and the TipTap editor already installed.
+
+```bash
+
+npm install alpinejs
+```
+
+```bash
+
+npm install @tiptap/core
 ```
 
 ## Usage
 
-Within your livewire component view, add the tiptap editor component and bind it to your desired livewire property as usual:
+Within your Livewire component view, add the TipTap editor component and bind it to your desired Livewire property as usual:
 
 ```html
-<x-tiptap-editor id="body" name="body" wire:ignore wire:model="body"></x-tiptap-editor>
+
+<x-tiptap::editor wire:model="message.body" id="body" name="body" />
 ```
 
 ## Customization
 
-The editor view may be customized by publishing this package's views into your application's `resources/views/vendor` folder. 
+The editor view may be customized by publishing the views into your application's `resources/views/vendor` folder.
 
 php artisan vendor:publish --tag=tiptap-views
 
