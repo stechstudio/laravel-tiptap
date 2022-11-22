@@ -1,61 +1,60 @@
 .ProseMirror {
     min-height: 16rem;
+}
 
-    a {
-        @apply text-blue-500 underline;
-    }
+.ProseMirror a {
+    @apply text-blue-500 underline;
+}
 
-    p {
-        @apply mb-4;
-    }
+.ProseMirror p {
+    @apply mb-4;
+}
 
-    ol, ul {
-        list-style: auto;
-        margin: initial;
-        padding-left: 30px;
-        margin-bottom: 1rem;
-    }
+.ProseMirror ol, .ProseMirror ul {
+    list-style: auto;
+    padding-left: 30px;
+    margin-bottom: 1rem;
+}
 
-    ul {
-        list-style: disc;
-    }
+.ProseMirror ul {
+    list-style: disc;
+}
 
-    h2 {
-        @apply text-2xl font-medium mb-2;
-    }
+.ProseMirror h2 {
+    @apply text-2xl font-medium mb-2;
+}
 
-    h3 {
-        @apply text-xl font-medium mb-2;
-    }
+.ProseMirror h3 {
+    @apply text-xl font-medium mb-2;
+}
 
-    ol p, ul p {
-        @apply m-0;
-    }
+.ProseMirror ol p, .ProseMirror ul p {
+    @apply m-0;
+}
 
-    hr {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        border: 0;
-        border-top: 1px solid rgba(0, 0, 0, .1);
-    }
-    }
+.ProseMirror hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+}
 
-    .ProseMirror-toolbar {
-        @apply px-2 flex gap-1 items-center;
+.ProseMirror-toolbar {
+    @apply px-2 flex gap-1 items-center;
+}
 
-    button {
-        @apply p-1;
-    }
+.ProseMirror-toolbar button {
+    @apply p-1;
+}
 
-    button > svg {
-        @apply h-4 w-4 text-gray-500;
-    }
+.ProseMirror-toolbar button > svg {
+    @apply h-4 w-4 text-gray-500;
+}
 
-    button:focus {
-        @apply outline-none;
-    }
+.ProseMirror-toolbar button:focus {
+    @apply outline-none;
+}
 
-    button:hover svg {
-        @apply text-gray-900;
-    }
+.ProseMirror-toolbar button:hover svg {
+    @apply text-gray-900;
 }
